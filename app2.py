@@ -1,5 +1,4 @@
 import cv2
-import matplotlib.pyplot as plt
 import os
 
 harcascade = "model/haarcascade_russian_plate_number.xml"
@@ -28,15 +27,14 @@ while True:
             cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 2)
             img_roi = img[y: y + h, x: x + w]
 
-            plt.imshow(cv2.cvtColor(img_roi, cv2.COLOR_BGR2RGB))
-            plt.title('Detected Plate')
-            plt.show()
-
+            cv2.imshow("Plate", img_roi)
+        
             cv2.imwrite(f"plates/scaned_img_{count}.jpg", img_roi)
             count += 1
 
-    plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
-    plt.title('Result')
-    plt.show()
+    cv2.imshow("Result", img)
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+     break
 
 cap.release()
+cv2.destroyAllWindows()

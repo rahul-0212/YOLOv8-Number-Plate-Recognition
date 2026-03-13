@@ -3,3 +3,4 @@ numpy
 easyocr
 matplotlib
 imutils
+ultralytics
